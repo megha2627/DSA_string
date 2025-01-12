@@ -1,0 +1,32 @@
+Given two version strings, version1 and version2, compare them. A version string consists of revisions separated by dots '.'. The value of the revision is its integer conversion ignoring leading zeros.
+
+To compare version strings, compare their revision values in left-to-right order. If one of the version strings has fewer revisions, treat the missing revision values as 0
+
+
+class Solution {
+    public int compareVersion(String version1, String version2) {
+        int i = 0, j = 0;
+
+        while (i < version1.length() || j < version2.length()) {
+
+            int num1 = 0, num2 = 0;
+            while (i < version1.length() && version1.charAt(i) != '.') {
+                num1 = num1 * 10 + (version1.charAt(i++) - '0');
+            }
+
+            while (j < version2.length() && version2.charAt(j) != '.') {
+                num2 = num2 * 10 + (version2.charAt(j++) - '0');
+            }
+            
+            if (num1 < num2) {
+                return -1;
+            }
+            if (num1 > num2) {
+                return 1;
+            }
+            i++;
+            j++;
+        }
+        return 0;
+    }
+}
